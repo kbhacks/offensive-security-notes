@@ -1,0 +1,52 @@
+ls - list files 
+cd - change directory
+whoami - current user
+hostname - Machine name
+find- 1. find -name recon.txt : searches for file with name recon.txt in the current directory.
+      2. find -name *.txt : searches for all .txt files in the current directory.
+      3. 
+grep - search the contents of files for specific values that we are looking for. Very useful.
+      1. grep "http" nessus_result.txt : search for the word http in the file and show it on the terminal.
+      2. grep -R "PRETTY_NAME" /etc/ : search recursively through all files and subdirectories and show where PRETTY_NAME appears.
+
+Permissions - rwxrwxrwx
+  To set execute permission, use commmand 'chmod 755 Hello_script.sh'. 755 will set the permissions as follows.
+
+    Please note that, abc (here 755) will set the permission in the following order. OWNER GROUP OTHER.
+    so 7 will set permission for owner, 5 for group, 5 for other.
+    7 in binary is 111, so rwx i.e. read write execute are all set to 1. Think of it as 1 means switch on , so setting 1 to read write execute means that owner has the ability, or these permissions are on for owner.
+    5 in binary is 101, so the group will only have read and execute permission on the script. They can't modify it.
+    Same goes for others.
+    Since we are talking about it , I want you to execute the following command on your terminal, just type ls -l. This command will list files and directories (no hidden file or directory will be shown, to view hidden directories or files as well use ls -al) present in your working directory (the directory you are in) along with their permissions , owner, and date on which they were modified.
+    let say a file have following permissions, -rwxr-xr-x, here rwx is for owner , i.e. the owner can read, write(modify), execute that file. group have r-x that means they can read and execute the file but can not write to it. Same goes for others.
+
+
+Other Special Variables -
+There are a few other variables that the system sets for you to use as well.
+
+    $0 - The name of the Bash script.
+    $1 - $9 - The first 9 arguments to the Bash script. (As mentioned above.)
+    $# - How many arguments were passed to the Bash script.
+    $@ - All the arguments supplied to the Bash script.
+    $? - The exit status of the most recently run process.
+    $$ - The process ID of the current script.
+    $USER - The username of the user running the script.
+    $HOSTNAME - The hostname of the machine the script is running on.
+    $SECONDS - The number of seconds since the script was started.
+    $RANDOM - Returns a different random number each time is it referred to.
+    $LINENO - Returns the current line number in the Bash script. 
+
+
+wget - Download file : wget <download_target_url>
+scp (secure copy) - Transferring files from your host. This command allows you to transfer files between two computers using SSH protocol to provide both authentication and encryption.
+  from local to remote -> scp <local_file> target_user@target_ip:<path_to_store_the_file_at>
+  from remote to local -> scp remote_user@remote_ip:<path_of_the_file> <path/name_to_save_as>
+
+serving file from your host - WEB : python3 -m http.server <port>, run this in the directory that you want to host on web.
+    -> Simultaneously, we can use wget for e.g, wget http://MACHINE_IP:<port>/<file_to_download>
+
+ps - viewing processes; ps aux - see processes run by other users and those that don't run from a session.
+top - another utility to view into system processes.
+crontabs - to manage cron jobs; https://crontab-generator.org/, https://crontab.guru/; to edit crontab -e.
+
+
