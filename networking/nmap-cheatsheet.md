@@ -1,11 +1,12 @@
-nmap essentials.
+#nmap essentials.
 
-nmap - network mapper
-     - A great tool to figure out what(hosts) you have in your surroundings and what do they have in them.
+nmap 
+- network mapper
+- A great tool to figure out what(hosts) you have in your surroundings and what do they have in them.
 
-nmap <target-ip> : performs a TCP connect scan
-sudo nmap <target-ip> : performs a TCP SYN scan
-	Note: If you provide a domain like, google.com, nmap will first convert it to a IP and then perform the scan.
+- `nmap <target-ip>` : performs a TCP connect scan
+- `sudo nmap <target-ip>` : performs a TCP SYN scan
+-- Note: If you provide a domain like, google.com, nmap will first convert it to a IP and then perform the scan.
 
 Switches => These are great to tweak the scan.
 -sT --- 1. TCP connect scan
