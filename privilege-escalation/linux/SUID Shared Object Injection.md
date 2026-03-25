@@ -38,8 +38,9 @@ Section 2: Discovery.
   ```bash
   /usr/local/bin/suid-so
   ```
-  **Output**
+  **Output:**
   ![suid-so](suid-so.png)
+  
   - Nothing interesting was found.
 
 4. Step 4: Used strace
@@ -53,7 +54,7 @@ Section 2: Discovery.
   ```bash
   strace /usr/local/bin/suid-so 2>&1 | grep -ie "open|access|no file found"
   ```
-  **Output**
+  **Output:**
   ![strace](strace_on_suid-so.png)
 
 
