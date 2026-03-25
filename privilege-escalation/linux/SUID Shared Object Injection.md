@@ -139,7 +139,7 @@ su www-data
 
     - Step 4: Switch to new root user
     ```bash
-    su passwd
+    su pwned
     ```
       - The x in passwd tells PAM to check shadow for the hash.
       - Empty field instead of x confuses PAM on modern systems - authentication fails 
