@@ -1,0 +1,3 @@
+root:!:0:0:root:/root:/bin/bash
+sunbath:$6$5N7G5DI2$i8URjR2AxE4LqKQavV9Eh2h7NeSaPdg/6f.6ECMlM2.QSkCL4crqVs/jIYv4C1WKftDTi8GbbrkjHDKE/M.HV1:1000:1000:Vuln,,,:/home/sunbath:/bin/bash
+mitch:$6$GUI9Tqee$WZfbmtBF/.FckHTI81ascbq/cMT4ifxfbhkrLO695Dagu5kDctlLwBWNeQFBfxEcITzGxWCCiod7Ld2.5TcfS0:1001:1001::/home/mitch:

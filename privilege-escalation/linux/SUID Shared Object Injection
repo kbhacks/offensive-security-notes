@@ -21,4 +21,7 @@ Section 1: SUID and Shared Objects.
 Section 2: Discovery.
 1. Step 1: Find all SUID binaries.
   - find / -type f -perm -04000 -ls 2>/dev/null
+  ![SUID binaries](SUID_bins.png)
+  
+
 

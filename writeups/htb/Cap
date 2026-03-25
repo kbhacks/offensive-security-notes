@@ -1,0 +1,34 @@
+Name - Cap
+Level - Easy
+OS - Linux
+
+1. Information Gathering: Active
+- NMAP scan
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-03-16 22:19 IST
+Stats: 0:00:46 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 46.43% done; ETC: 22:21 (0:00:53 remaining)
+Nmap scan report for 10.129.7.130
+Host is up (0.71s latency).
+Not shown: 65515 filtered tcp ports (no-response)
+PORT     STATE  SERVICE
+21/tcp   open   ftp
+22/tcp   open   ssh
+23/tcp   closed telnet
+25/tcp   closed smtp
+53/tcp   closed domain
+111/tcp  closed rpcbind
+113/tcp  closed ident
+139/tcp  closed netbios-ssn
+143/tcp  closed imap
+199/tcp  closed smux
+256/tcp  closed fw1-secureremote
+443/tcp  closed https
+554/tcp  closed rtsp
+993/tcp  closed imaps
+995/tcp  closed pop3s
+1025/tcp closed NFS-or-IIS
+1720/tcp closed h323q931
+3389/tcp closed ms-wbt-server
+8080/tcp closed http-proxy
+8888/tcp closed sun-answerbook
+
