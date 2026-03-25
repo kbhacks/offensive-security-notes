@@ -88,6 +88,7 @@ void inject(){
 
 After observations, where the fun began (^-^) --> 
 - I typed 'id' and 'whoami', this was the output.
+![id&whomai](id.png)
 
 - Now, I wanted to enumerate more from the inside as what user we have, what different services are up and running, and if we can pivot to other networks or machines.
 
@@ -95,6 +96,7 @@ After observations, where the fun began (^-^) -->
  ```bash
 su www-data
  ```
+![su_www-data](su_www-data.png)
 
 - It prompted me for a password, at this moment I knew something is not right, if I am really root I would have been able to switch to other user without the need to enter a password.
 
@@ -109,16 +111,17 @@ su www-data
 - But Since we have a euid=0(root), we have some ways to become root, i.e., uid=0
 
   METHOD 1: Using Python/Perl setuid syscall:
-    - ```bash
+    ```bash
     python3 -c "import os; os.setuid(0); os.system('/bin/bash')"
     ```
 
-    - ```bash
+    ```bash
     perl -e 'use POSIX qw(setuid); $ENV{PATH}="/bin:/usr/bin"; POSIX::setuid(0); exec("/bin/bash");'
     ```
     - Here, when using perl, we need to define the $ENV{PATH}. If we don't we will see this error: screenshot here
-    - The reason is, Perl enables 'taint mode' automatically when running setuid/setgid. Tainted $ENV{PATH} is considered user-controlled and insecure. Setting it explicitly marks it as untainted.
+    - The reason is, Perl enables 'taint mode' automatically when running setuid/setgid. Tainted $ENV{PATH} is considered user-controlled and insecure. Setting it explicitly marks it as untainted. The error that you may get without defining the $ENV{PATH} is: ![error](error.png)
     - Why it works: setuid(0) is a kernel syscall. when euid=0, the kernel allows you to change your real uid to 0. Now uid=0 AND euid=0 - we are real root.
+    ![root1](root1.png)
 
   METHOD 2: Backdoor via /etc/passwd and /etc/shadow (More about maintaining access)
     - Step 1: Add user to /etc/passwd
