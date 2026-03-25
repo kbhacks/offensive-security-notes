@@ -87,7 +87,7 @@ void inject(){
   - we got a shell.
 ![shell](Images/shell.png)
 
-After observations, where the fun began (^-^) --> 
+# After observations, where the fun began (^-^) --> 
 - I typed 'id' and 'whoami', this was the output.
 ![id&whomai](Images/id.png)
 
