@@ -1,0 +1,24 @@
+SUID Shared Object Injection - From euid=0 to Read Root
+
+Tryhackme Room used - https://tryhackme.com/room/linuxprivescarena
+
+
+Section 1: SUID and Shared Objects.
+1. SUID bit : 
+  - Set User ID.
+  - a special Linux/Unix file permission that allows an executable file to run with the privileges of its owner rather than the user running it.
+  - What it means is that a binary with SUID bit set, and owner root, will run with root privileges, rather than the user privileges executing the binary.
+
+2. Shared objects :
+  - .so files
+  - these are libraries that programs load at runtime.
+  - Multiple application can load these simultaneously, acting similarly to Dynamic Link Libraries (DLLs) in Windows.
+  - Now hijacking and/or manipulating these shared objects can be one of the ways to escalate privileges.
+
+** If a SUID binary loads a shared object from a path we control, we can inject malicious code that runs with the binary's privileges.
+
+
+Section 2: Discovery.
+1. Step 1: Find all SUID binaries.
+  - find / -type f -perm -04000 -ls 2>/dev/null
+
