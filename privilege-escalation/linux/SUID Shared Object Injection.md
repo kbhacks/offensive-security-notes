@@ -35,7 +35,7 @@ Section 2: Discovery.
 
 3. Step 3: Ran it
   - Ran it, to see some output, trying to gather information as what it does.
-  - Screen shot here.
+  - <img width="890" height="93" alt="Image" src="https://github.com/user-attachments/assets/f4208bd2-7796-49a0-a425-c09955bb816f" />
   - Nothing interesting was found.
 
 4. Step 4: Used strace
