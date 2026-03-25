@@ -35,7 +35,11 @@ Section 2: Discovery.
 
 3. Step 3: Ran it
   - Ran it, to see some output, trying to gather information as what it does.
-  <img width="890" height="93" alt="Image" src="https://github.com/user-attachments/assets/f4208bd2-7796-49a0-a425-c09955bb816f" />
+  ```bash
+  /usr/local/bin/suid-so
+  ```
+  **Output**
+  ![suid-so](suid-so.png)
   - Nothing interesting was found.
 
 4. Step 4: Used strace
@@ -50,7 +54,7 @@ Section 2: Discovery.
   strace /usr/local/bin/suid-so 2>&1 | grep -ie "open|access|no file found"
   ```
   **Output**
-  <img width="1003" height="365" alt="Image" src="https://github.com/user-attachments/assets/bcd3d097-c827-4db7-86d1-2a29569ff986" />
+  ![strace](strace_on_suid-so.png)
 
 
 Section 3: Exploitation
@@ -80,7 +84,7 @@ void inject(){
 5. Step 3: Ran /usr/local/bin/suid-so 
   - it loaded our malicious libcalc.so and executed our code.
   - we got a shell.
-<img width="433" height="75" alt="Image" src="https://github.com/user-attachments/assets/5956386d-766d-419c-a7b6-92dab250ffe8" />
+![shell](shell.png)
 
 After observations, where the fun began (^-^) --> 
 - I typed 'id' and 'whoami', this was the output.
