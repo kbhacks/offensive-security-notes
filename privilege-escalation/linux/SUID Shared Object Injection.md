@@ -25,7 +25,7 @@ Section 2: Discovery.
   ```
 
   **Output:**
-  ![SUID binaries](SUID_bins.png)
+  ![SUID binaries](Images/SUID_bins.png)
 
 2. Step 2: Found /usr/local/bin/suid-so.
   - Now, from the list of SUID binaries, most of them were system binaries. suid-so, along with suid-env and suid-env2 is not system binary. 
@@ -39,7 +39,7 @@ Section 2: Discovery.
   /usr/local/bin/suid-so
   ```
   **Output:**
-  ![suid-so](suid-so.png)
+  ![suid-so](Images/suid-so.png)
   
   - Nothing interesting was found.
 
@@ -55,7 +55,7 @@ Section 2: Discovery.
   strace /usr/local/bin/suid-so 2>&1 | grep -ie "open|access|no file found"
   ```
   **Output:**
-  ![strace](strace_on_suid-so.png)
+  ![strace](Images/strace_on_suid-so.png)
 
 
 Section 3: Exploitation
@@ -85,11 +85,11 @@ void inject(){
 5. Step 3: Ran /usr/local/bin/suid-so 
   - it loaded our malicious libcalc.so and executed our code.
   - we got a shell.
-![shell](shell.png)
+![shell](Images/shell.png)
 
 After observations, where the fun began (^-^) --> 
 - I typed 'id' and 'whoami', this was the output.
-![id&whomai](id.png)
+![id&whomai](Images/id.png)
 
 - Now, I wanted to enumerate more from the inside as what user we have, what different services are up and running, and if we can pivot to other networks or machines.
 
@@ -97,7 +97,7 @@ After observations, where the fun began (^-^) -->
  ```bash
 su www-data
  ```
-![su_www-data](su_www-data.png)
+![su_www-data](Images/su_www-data.png)
 
 - It prompted me for a password, at this moment I knew something is not right, if I am really root I would have been able to switch to other user without the need to enter a password.
 
@@ -120,9 +120,9 @@ su www-data
     perl -e 'use POSIX qw(setuid); $ENV{PATH}="/bin:/usr/bin"; POSIX::setuid(0); exec("/bin/bash");'
     ```
     - Here, when using perl, we need to define the $ENV{PATH}. If we don't we will see this error: screenshot here
-    - The reason is, Perl enables 'taint mode' automatically when running setuid/setgid. Tainted $ENV{PATH} is considered user-controlled and insecure. Setting it explicitly marks it as untainted. The error that you may get without defining the $ENV{PATH} is: ![error](error.png)
+    - The reason is, Perl enables 'taint mode' automatically when running setuid/setgid. Tainted $ENV{PATH} is considered user-controlled and insecure. Setting it explicitly marks it as untainted. The error that you may get without defining the $ENV{PATH} is: ![error](Images/error.png)
     - Why it works: setuid(0) is a kernel syscall. when euid=0, the kernel allows you to change your real uid to 0. Now uid=0 AND euid=0 - we are real root.
-    ![root1](root1.png)
+    ![root1](Images/root1.png)
 
   METHOD 2: Backdoor via /etc/passwd and /etc/shadow (More about maintaining access)
     - Step 1: Add user to /etc/passwd
