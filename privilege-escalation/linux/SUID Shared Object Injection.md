@@ -144,3 +144,4 @@ su www-data
     ```
     - The x in /etc/passwd tells PAM to check shadow for the hash.
     - Empty field instead of x confuses PAM on modern systems - authentication fails 
+    
